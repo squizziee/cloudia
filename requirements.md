@@ -7,12 +7,12 @@
 * UserProfiles - diversified user data
   * id: int - primary key
   * user_id: int - Users foreign key
-  * first_name: varchar - user first name (1 - 100 symbols)
-  * last_name: varchar - user last name (1 - 100 symbols)
-  * avatar_url: varchar - user avatar link (0 - 200 symbols)
-  * age: int - user age (0 - 200)
-  * location: varchar - user general location (0 - 200 symbols)
-  * biography: varchar - user bio (0 to 1000 symbols)
+  * first_name: varchar - user first name
+  * last_name: varchar - user last name 
+  * avatar_url: varchar - user avatar link
+  * age: int - user age
+  * location: varchar - user general location 
+  * biography: varchar - user bio 
   * created_at: timestamp - time when account was created    
 * Roles - user roles (Administrator, Moderator, Basic, etc)
   * id: int - primary key

@@ -3,14 +3,15 @@
 
 -- CREATE TABLE ban_statuses(
 -- 	id SERIAL PRIMARY KEY,
--- 	start_date DATE,
--- 	end_date DATE,
--- 	report_id INTEGER REFERENCES reports(id) 
+-- 	ban_end_date DATE
 -- );
 
 -- INSERT INTO ban_statuses (start_date) VALUES(null);
 -- INSERT INTO ban_statuses (start_date) VALUES(null);
 -- INSERT INTO ban_statuses (start_date) VALUES(null);
 -- INSERT INTO ban_statuses (start_date) VALUES(null);
+
+ALTER TABLE ban_statuses
+ADD COLUMN ban_end_date DATE; 
 
 SELECT * FROM ban_statuses;

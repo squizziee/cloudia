@@ -1,0 +1,20 @@
+-- CREATE OR REPLACE FUNCTION autodelete_post() RETURNS TRIGGER AS $autodelete_post$
+-- 	DECLARE
+-- 		same_type_violation_report_count_on_post INTEGER;
+-- 	BEGIN
+-- 		SELECT COUNT(id)
+-- 		INTO same_type_violation_report_count_on_post
+-- 		FROM reports
+-- 		WHERE violation_id = NEW.violation_id 
+-- 			AND receiver_id = NEW.receiver_id
+-- 			AND post_id = NEW.post_id;
+-- 		IF same_type_violation_report_count_on_post >= 3 THEN
+-- 			DELETE FROM posts
+-- 			WHERE id = NEW.post_id;
+-- 		END IF;
+-- 		RETURN NEW;
+-- 	END;
+-- $autodelete_post$ LANGUAGE plpgsql;
+
+-- CREATE OR REPLACE TRIGGER autodelete_post
+-- AFTER INSERT ON reports FOR EACH ROW EXECUTE PROCEDURE autodelete_post();

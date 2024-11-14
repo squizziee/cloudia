@@ -11,4 +11,3 @@ WHERE id = 0;
 UPDATE comments
 SET text_content = ''
 WHERE id = 0;
-

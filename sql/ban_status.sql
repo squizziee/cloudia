@@ -11,7 +11,7 @@
 -- INSERT INTO ban_statuses (start_date) VALUES(null);
 -- INSERT INTO ban_statuses (start_date) VALUES(null);
 
-ALTER TABLE ban_statuses
-ADD COLUMN ban_end_date DATE; 
+
+-- CREATE INDEX ban_statuses_default ON ban_statuses(id);
 
 SELECT * FROM ban_statuses;

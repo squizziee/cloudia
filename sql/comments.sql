@@ -2,9 +2,10 @@ DROP TABLE comments;
 
 CREATE TABLE comments(
 	id SERIAL PRIMARY KEY,
-	user_profile_id INTEGER REFERENCES user_profiles(id) NOT NULL,
-	post_id INTEGER REFERENCES posts(id) NOT NULL,
-	text_content VARCHAR(40000)
+	user_profile_id INTEGER REFERENCES user_profiles(id) NOT NULL ,
+	post_id INTEGER REFERENCES posts(id) ON DELETE CASCADE NOT NULL,
+	text_content VARCHAR(40000),
+	posted_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO comments (user_profile_id, post_id, text_content)

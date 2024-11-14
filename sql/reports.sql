@@ -5,6 +5,7 @@
 -- 	sender_id INTEGER REFERENCES user_profiles(id) NOT NULL,
 -- 	receiver_id INTEGER REFERENCES user_profiles(id) NOT NULL,
 -- 	violation_id INTEGER REFERENCES violations(id) NOT NULL
+--  post_id INTEGER REFERENCES posts(id) NOT NULL
 -- );
 
 -- INSERT INTO reports (sender_id, receiver_id, violation_id)

@@ -3,7 +3,8 @@
 CREATE TABLE posts(
 	id SERIAL PRIMARY KEY,
 	user_profile_id INTEGER REFERENCES user_profiles(id) NOT NULL,
-	text_content VARCHAR(40000)
+	text_content VARCHAR(40000),
+	posted_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO posts (user_profile_id, text_content)
@@ -28,3 +29,7 @@ INSERT INTO posts (user_profile_id, text_content)
 VALUES(3, 'Lorem ipsum odor amet, consectetuer adipiscing elit. Urna consequat risus senectus efficitur ipsum.');
 
 SELECT * FROM posts;
+
+-- ALTER TABLE posts
+-- ALTER COLUMN posted_at
+-- SET DEFAULT CURRENT_TIMESTAMP

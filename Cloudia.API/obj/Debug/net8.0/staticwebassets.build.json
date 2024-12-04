@@ -1,0 +1,20 @@
+{
+  "Version": 1,
+  "Hash": "GoKwzOrFlSgpS6IEyrdWsksvQDk5tTe+NnLpLMTdT70=",
+  "Source": "Cloudia.API",
+  "BasePath": "_content/Cloudia.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Cloudia.API\\wwwroot",
+      "Source": "Cloudia.API",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\cloudia-imp\\Cloudia\\Cloudia.API\\wwwroot\\",
+      "BasePath": "_content/Cloudia.API",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [],
+  "Endpoints": []
+}

@@ -1,4 +1,6 @@
 wwwroot\img\file0d1aff39-cdbc-4094-8377-6e9e63c96d25.jpg
 wwwroot\img\file1a14d809-c5d9-4941-853c-4eedfc1abc7d.jpg
+wwwroot\img\file1ae04f56-bd25-4790-ad6c-fe6576ff6d9a.jpg
+wwwroot\img\file4fb688bf-46dd-43d1-bfe6-442e87817644.jpg
 wwwroot\img\file600b02d7-e71c-4727-bf1f-85f1f8a88b3d.jpg
 wwwroot\img\file896c7bfd-bf07-4e87-9f25-17ff5627c96b.jpg

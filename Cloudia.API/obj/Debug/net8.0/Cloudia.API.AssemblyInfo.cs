@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Cloudia.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+60c6fa55af32793825cdabcaf506f77c1fc6a25d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+678f1870e214d249d5ca077066fcd726efbf579b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Cloudia.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Cloudia.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

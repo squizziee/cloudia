@@ -32,6 +32,10 @@ builder.Services.AddScoped<ILikeService, LikeService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<IReportService, ReportService>();
 builder.Services.AddScoped<IUserProfileService, UserProfileService>();
+builder.Services.AddScoped<IViolationService, ViolationService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
+builder.Services.AddScoped<IModeratorService, ModeratorService>();
+builder.Services.AddScoped<ISearchService, SearchService>();
 
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -156,17 +160,19 @@ app.Map("/auth/register", async (context) =>
 
 // posts CRUD
 // <----------------------->
-app.MapGet("/api/posts", [Authorize] async (context) =>
+app.MapGet("/api/posts/user/{id}", async (context) =>
 {
-    using (var scope = app.Services.CreateScope())
-    {
-        var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
-        var result = dbContext.Posts
-            .FromSqlRaw($"SELECT * FROM posts")
-            .ToList();
-        context.Response.StatusCode = 200;
-        await context.Response.WriteAsJsonAsync(result);
-    }
+    var id = int.Parse(context.Request.RouteValues["id"]!.ToString()!);
+
+    using var scope = app.Services.CreateScope();
+    var postService = scope.ServiceProvider.GetRequiredService<IPostService>();
+
+    var result = await postService.GetUserPosts(id);
+
+    var srlzd = JsonConvert.SerializeObject(result);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsJsonAsync(srlzd);
 });
 
 app.MapGet("/api/posts/{id}", async (context) =>
@@ -229,10 +235,10 @@ app.MapPut("/api/posts/{id}", [Authorize] async (context) =>
         return;
     }
 
-    await postService.UpdatePost(id, text!, attachments);
+    var result = await postService.UpdatePost(id, text!, attachments);
 
     context.Response.StatusCode = 200;
-    await context.Response.WriteAsync("Post deleted");
+    await context.Response.WriteAsJsonAsync(result);
 });
 
 app.MapDelete("/api/posts/{id}", [Authorize] async (context) =>
@@ -457,6 +463,23 @@ app.MapGet("/api/profiles/subscribers", [Authorize] async (context) =>
     await context.Response.WriteAsJsonAsync(result);
 });
 
+app.MapGet("/api/profiles/subscribers/{id}", async (context) =>
+{
+    var id = int.Parse(context.Request.RouteValues["id"]!.ToString()!);
+
+    using var scope = app.Services.CreateScope();
+    var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+    var profileService = scope.ServiceProvider.GetRequiredService<IUserProfileService>();
+
+
+    var result = await profileService.GetSubscribers(id);
+
+    var srlzd = JsonConvert.SerializeObject(result);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsJsonAsync(result);
+});
+
 app.MapGet("/api/profiles/subscriptions", [Authorize] async (context) =>
 {
     var userEmail = context.User.FindFirst("_email")?.Value;
@@ -474,6 +497,23 @@ app.MapGet("/api/profiles/subscriptions", [Authorize] async (context) =>
     }
 
     var result = await profileService.GetSubscriptions(userExists.id);
+
+    var srlzd = JsonConvert.SerializeObject(result);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsJsonAsync(result);
+});
+
+app.MapGet("/api/profiles/subscriptions/{id}", async (context) =>
+{
+    var id = int.Parse(context.Request.RouteValues["id"]!.ToString()!);
+
+    using var scope = app.Services.CreateScope();
+    var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+    var profileService = scope.ServiceProvider.GetRequiredService<IUserProfileService>();
+
+
+    var result = await profileService.GetSubscriptions(id);
 
     var srlzd = JsonConvert.SerializeObject(result);
 
@@ -557,7 +597,7 @@ app.MapPut("/api/profiles", [Authorize] async (context) =>
 
     var firstName = context.Request.Form["first_name"];
     var lastName = context.Request.Form["last_name"];
-    var avatarUrl = context.Request.Form["avatar_url"];
+    var avatar = context.Request.Form.Files["avatar"];
     var location = context.Request.Form["location"];
     var biography = context.Request.Form["biography"];
     int? age = (context.Request.Form["age"].IsNullOrEmpty()) ? null : int.Parse(context.Request.Form["age"]!);
@@ -574,11 +614,180 @@ app.MapPut("/api/profiles", [Authorize] async (context) =>
         return;
     }
 
-    await profileService.UpdateUserProfile(userExists.id, firstName!, lastName!, avatarUrl, location, biography, age);
+    await profileService.UpdateUserProfile(userExists.id, firstName!, lastName!, avatar, location, biography, age);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsync("Updated");
+});
+
+// <----------------------->
+
+// admin
+// <----------------------->
+
+app.MapPut("/api/admin/ban/{id}", [Authorize(Roles = "3")] async (context) =>
+{
+    var id = int.Parse(context.Request.RouteValues["id"]!.ToString()!);
+
+    using var scope = app.Services.CreateScope();
+    var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+    var profileService = scope.ServiceProvider.GetRequiredService<IAdminService>();
+
+    await profileService.BanUser(id);
 
     context.Response.StatusCode = 200;
     await context.Response.WriteAsync("Subscribed");
 });
 
+app.MapPut("/api/admin/unban/{id}", [Authorize(Roles = "3")] async (context) =>
+{
+    var id = int.Parse(context.Request.RouteValues["id"]!.ToString()!);
+
+    using var scope = app.Services.CreateScope();
+    var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+    var profileService = scope.ServiceProvider.GetRequiredService<IAdminService>();
+
+    await profileService.UnbanUser(id);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsync("Subscribed");
+});
+
+// <----------------------->
+
+// violations (only admin)
+// <----------------------->
+
+app.MapGet("/api/violations/{id}", [Authorize] async (context) =>
+{
+    var id = int.Parse(context.Request.RouteValues["id"]!.ToString()!);
+
+    using var scope = app.Services.CreateScope();
+    var commentService = scope.ServiceProvider.GetRequiredService<IViolationService>();
+
+    var result = await commentService.GetViolation(id);
+    if (result == null)
+    {
+        context.Response.StatusCode = 404;
+        await context.Response.WriteAsync("No such violation");
+        return;
+    }
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsJsonAsync(result);
+});
+
+app.MapPost("/api/violations", [Authorize(Roles = "3")] async (context) =>
+{
+
+    var name = context.Request.Form["name"];
+    var description = context.Request.Form["description"];
+    var banDays = int.Parse(context.Request.Form["ban_days"]!);
+
+    using var scope = app.Services.CreateScope();
+    var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+    var violationService = scope.ServiceProvider.GetRequiredService<IViolationService>();
+
+    var newViolation = await violationService.AddViolation(name!, description!, banDays);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsJsonAsync(newViolation);
+});
+
+app.MapPut("/api/violations/{id}", [Authorize(Roles = "3")] async (context) =>
+{
+    var id = int.Parse(context.Request.RouteValues["id"]!.ToString()!);
+
+    var name = context.Request.Form["name"];
+    var description = context.Request.Form["description"];
+    var banDays = int.Parse(context.Request.Form["ban_days"]!);
+
+    using var scope = app.Services.CreateScope();
+    var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+    var violationService = scope.ServiceProvider.GetRequiredService<IViolationService>();
+
+    var newViolation = await violationService.UpdateViolation(id, name!, description!, banDays);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsJsonAsync(newViolation);
+});
+
+app.MapDelete("/api/violations/{id}", [Authorize(Roles = "3")] async (context) =>
+{
+    var id = int.Parse(context.Request.RouteValues["id"]!.ToString()!);
+
+    using var scope = app.Services.CreateScope();
+    var violationService = scope.ServiceProvider.GetRequiredService<IViolationService>();
+
+    await violationService.DeleteViolation(id);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsync("Violation deleted");
+});
+
+// <----------------------->
+
+// moderation
+// <----------------------->
+
+app.MapDelete("/api/moderation/remove/{id}", [Authorize(Roles = "2")] async (context) =>
+{
+    var id = int.Parse(context.Request.RouteValues["id"]!.ToString()!);
+
+    using var scope = app.Services.CreateScope();
+    var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+    var moderatorService = scope.ServiceProvider.GetRequiredService<IModeratorService>();
+
+    var newViolation = await moderatorService.DeletePost(id);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsJsonAsync(newViolation);
+});
+
+// <----------------------->
+
+// search
+// <----------------------->
+
+app.MapGet("/api/search/users/location", async (context) =>
+{
+    var textQuery = context.Request.Form["text_query"];
+
+    using var scope = app.Services.CreateScope();
+    var searchService = scope.ServiceProvider.GetRequiredService<ISearchService>();
+
+    var result = await searchService.SearchUsersByLocation(textQuery);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsJsonAsync(result);
+});
+
+app.MapGet("/api/search/users/name", async (context) =>
+{
+    var textQuery = context.Request.Form["text_query"];
+
+    using var scope = app.Services.CreateScope();
+    var searchService = scope.ServiceProvider.GetRequiredService<ISearchService>();
+
+    var result = await searchService.SearchUsersByName(textQuery!);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsJsonAsync(result);
+});
+
+app.MapGet("/api/search/users", async (context) =>
+{
+    var textQuery = context.Request.Form["text_query"]!;
+
+    using var scope = app.Services.CreateScope();
+    var searchService = scope.ServiceProvider.GetRequiredService<ISearchService>();
+
+    var result = await searchService.SearchUsersGeneral(textQuery!);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsJsonAsync(result);
+});
+
+// <----------------------->
 
 app.Run();

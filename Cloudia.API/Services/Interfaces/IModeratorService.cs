@@ -2,5 +2,6 @@
 {
     public interface IModeratorService
     {
+        public Task<bool> DeletePost(int postId);
     }
 }

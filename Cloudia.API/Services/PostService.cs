@@ -113,5 +113,31 @@ namespace Cloudia.API.Services
 
             return (post: _post, attachments: _attachments, comments: _comments, likes: _likes);
         }
+
+        public async Task<List<(Post post, List<PostAttachment>? attachments, List<Comment>? comments, List<Like>? likes)>> GetUserPosts(int userId)
+        {
+            var profile = GetUserProfile(userId)!;
+
+            var result = new List<(Post post, List<PostAttachment>? attachments, List<Comment>? comments, List<Like>? likes)>();
+
+            using var connection = new NpgsqlConnection(_context.GetConnectionString());
+            await connection.OpenAsync();
+
+            var command = new NpgsqlCommand("SELECT id FROM posts WHERE user_profile_id = @userId", connection);
+
+            command.Parameters.AddWithValue("@userId", profile.id);
+
+            var reader = await command.ExecuteReaderAsync();
+
+            while (reader.Read())
+            {
+                var postId = reader.GetInt32(0);
+                result.Add((await GetFullPost(postId))!);
+            }
+
+            await connection.CloseAsync();
+
+            return result;
+        }
     }
 }

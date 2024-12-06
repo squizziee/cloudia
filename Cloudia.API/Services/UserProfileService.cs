@@ -12,12 +12,37 @@ namespace Cloudia.API.Services
         private readonly IApplicationContext _context;
         private readonly ILogger<UserProfileService> _logger;
         private readonly IPostService _postService;
+        private readonly IWebHostEnvironment _environment;
 
-        public UserProfileService(IApplicationContext context, ILogger<UserProfileService> logger, IPostService postService)
+        public UserProfileService(IApplicationContext context, ILogger<UserProfileService> logger, IPostService postService, IWebHostEnvironment webHostEnvironment)
         {
             this._context = context;
             this._logger = logger;
             this._postService = postService;
+            this._environment = webHostEnvironment;
+        }
+
+        private async Task<string> SaveAvatar(IFormFile attachment)
+        {
+            var uploadsFolder = Path.Combine(_environment.WebRootPath, "img");
+            if (!Directory.Exists(uploadsFolder))
+            {
+                Directory.CreateDirectory(uploadsFolder);
+            }
+
+            var uniqueFileName = $"file{Guid.NewGuid()}{Path.GetExtension(attachment.FileName)}";
+
+            _logger.LogWarning($"New file: {uniqueFileName}");
+
+            var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+            _logger.LogWarning($"New file path: {filePath}");
+
+            var fileInfo = new FileInfo(filePath);
+            using var fileStream = fileInfo.Create();
+            await attachment.CopyToAsync(fileStream);
+
+            return $"https://localhost:5001/img/{uniqueFileName}";
         }
 
         public async Task<List<(Post post, List<PostAttachment>? attachments, List<Comment>? comments, List<Like>? likes)>> GetFeed(int userId)
@@ -108,8 +133,14 @@ namespace Cloudia.API.Services
             return true;
         }
 
-        public async Task<UserProfile> UpdateUserProfile(int userId, string firstName, string lastName, string? avatarUrl, string? location, string? biography, int? age)
+        public async Task<UserProfile> UpdateUserProfile(int userId, string firstName, string lastName, IFormFile? avatar, string? location, string? biography, int? age)
         {
+            string avatarUrl = "";
+            if (avatar != null)
+            {
+                avatarUrl = await SaveAvatar(avatar);
+            }
+
             var profile = (await GetUserProfile(userId))!;
 
             using var connection = new NpgsqlConnection(_context.GetConnectionString());
@@ -120,7 +151,7 @@ namespace Cloudia.API.Services
             command.Parameters.AddWithValue("@user_profile_id", profile.id);
             command.Parameters.AddWithValue("@first_name_new", firstName);
             command.Parameters.AddWithValue("@last_name_new", lastName);
-            command.Parameters.AddWithValue("@avatar_url_new", avatarUrl ?? "");
+            command.Parameters.AddWithValue("@avatar_url_new", avatarUrl);
             command.Parameters.AddWithValue("@location_new", location ?? "");
             command.Parameters.AddWithValue("@biography_new", biography ?? "");
             command.Parameters.AddWithValue("@age_new", age ?? -1);

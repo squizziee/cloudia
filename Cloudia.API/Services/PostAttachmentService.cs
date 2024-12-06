@@ -4,7 +4,6 @@ using Cloudia.API.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Npgsql;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Net.Mail;
 
 namespace Cloudia.API.Services

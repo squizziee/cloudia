@@ -5,7 +5,7 @@ namespace Cloudia.API.Services.Interfaces
     public interface IUserProfileService
     {
         public Task<UserProfile?> GetUserProfile(int userId);
-        public Task<UserProfile> UpdateUserProfile(int userId, string firstName, string lastName, string? avatarUrl, string? location, string? biography, int? age);
+        public Task<UserProfile> UpdateUserProfile(int userId, string firstName, string lastName, IFormFile? avatar, string? location, string? biography, int? age);
         public Task<List<UserProfile>> GetSubscribers(int userId);
         public Task<List<UserProfile>> GetSubscriptions(int userId);
         public Task<bool> SubscribeTo(int userId, int subscribeToProfileId);

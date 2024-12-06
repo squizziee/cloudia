@@ -4,10 +4,11 @@ namespace Cloudia.API.Services.Interfaces
 {
     public interface IPostService
     {
-        List<Post> GetPosts(string filter);
+        Task<List<Post>> GetPosts(string filter);
         Task<Post?> GetPost(int id);
-        Task<Post> AddPost(int userProfileId, string textContent, IFormFileCollection attachments);
-        void UpdatePost(int id);
+        Task<(Post? post, List<PostAttachment>? attachments, List<Comment>? comments, List<Like>? likes)> GetFullPost(int id);
+        Task<Post> AddPost(int userId, string textContent, IFormFileCollection attachments);
+        Task<Post> UpdatePost(int userId, string textContent, IFormFileCollection attachments);
         void DeletePost(int id);
     }
 }

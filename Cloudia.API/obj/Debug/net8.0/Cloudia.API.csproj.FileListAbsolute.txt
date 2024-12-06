@@ -121,3 +121,5 @@ C:\Users\USER\Desktop\cloudia-imp\Cloudia\Cloudia.API\bin\Debug\net8.0\Microsoft
 C:\Users\USER\Desktop\cloudia-imp\Cloudia\Cloudia.API\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\USER\Desktop\cloudia-imp\Cloudia\Cloudia.API\bin\Debug\net8.0\Cloudia.API.staticwebassets.runtime.json
 C:\Users\USER\Desktop\cloudia-imp\Cloudia\Cloudia.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\USER\Desktop\cloudia-imp\Cloudia\Cloudia.API\obj\Debug\net8.0\Cloudia.API.sourcelink.json
+C:\Users\USER\Desktop\cloudia-imp\Cloudia\Cloudia.API\bin\Debug\net8.0\Newtonsoft.Json.dll

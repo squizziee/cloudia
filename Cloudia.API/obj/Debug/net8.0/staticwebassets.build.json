@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GoKwzOrFlSgpS6IEyrdWsksvQDk5tTe+NnLpLMTdT70=",
+  "Hash": "gxE9NncMt0CdMpOH76o0LwmkUsT2k+BB/nnfs1+e4qo=",
   "Source": "Cloudia.API",
   "BasePath": "_content/Cloudia.API",
   "Mode": "Default",
@@ -15,6 +15,420 @@
       "Pattern": "**"
     }
   ],
-  "Assets": [],
-  "Endpoints": []
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\USER\\Desktop\\cloudia-imp\\Cloudia\\Cloudia.API\\wwwroot\\img\\file0d1aff39-cdbc-4094-8377-6e9e63c96d25.jpg",
+      "SourceId": "Cloudia.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\cloudia-imp\\Cloudia\\Cloudia.API\\wwwroot\\",
+      "BasePath": "_content/Cloudia.API",
+      "RelativePath": "img/file0d1aff39-cdbc-4094-8377-6e9e63c96d25#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "yrkiv0pq5d",
+      "Integrity": "rsg7yeHNAMh1dpp5F6rviiMH9PoEzbTcfcDTWM/fCaw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\file0d1aff39-cdbc-4094-8377-6e9e63c96d25.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\USER\\Desktop\\cloudia-imp\\Cloudia\\Cloudia.API\\wwwroot\\img\\file1a14d809-c5d9-4941-853c-4eedfc1abc7d.jpg",
+      "SourceId": "Cloudia.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\cloudia-imp\\Cloudia\\Cloudia.API\\wwwroot\\",
+      "BasePath": "_content/Cloudia.API",
+      "RelativePath": "img/file1a14d809-c5d9-4941-853c-4eedfc1abc7d#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "abzxrlevsk",
+      "Integrity": "+r/b7F3OsSPzIJBs1XGd0Vx/WtHmYoi5kPb8KGTR8TA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\file1a14d809-c5d9-4941-853c-4eedfc1abc7d.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\USER\\Desktop\\cloudia-imp\\Cloudia\\Cloudia.API\\wwwroot\\img\\file600b02d7-e71c-4727-bf1f-85f1f8a88b3d.jpg",
+      "SourceId": "Cloudia.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\cloudia-imp\\Cloudia\\Cloudia.API\\wwwroot\\",
+      "BasePath": "_content/Cloudia.API",
+      "RelativePath": "img/file600b02d7-e71c-4727-bf1f-85f1f8a88b3d#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "yrkiv0pq5d",
+      "Integrity": "rsg7yeHNAMh1dpp5F6rviiMH9PoEzbTcfcDTWM/fCaw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\file600b02d7-e71c-4727-bf1f-85f1f8a88b3d.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\USER\\Desktop\\cloudia-imp\\Cloudia\\Cloudia.API\\wwwroot\\img\\file896c7bfd-bf07-4e87-9f25-17ff5627c96b.jpg",
+      "SourceId": "Cloudia.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\cloudia-imp\\Cloudia\\Cloudia.API\\wwwroot\\",
+      "BasePath": "_content/Cloudia.API",
+      "RelativePath": "img/file896c7bfd-bf07-4e87-9f25-17ff5627c96b#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "e4hyhtcyvg",
+      "Integrity": "LhA5p9ZqdnQ+IuVr3i4AP59vUTUlpANKNNBOgKq3cE4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\file896c7bfd-bf07-4e87-9f25-17ff5627c96b.jpg"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "img/file0d1aff39-cdbc-4094-8377-6e9e63c96d25.jpg",
+      "AssetFile": "C:\\Users\\USER\\Desktop\\cloudia-imp\\Cloudia\\Cloudia.API\\wwwroot\\img\\file0d1aff39-cdbc-4094-8377-6e9e63c96d25.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "309505"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rsg7yeHNAMh1dpp5F6rviiMH9PoEzbTcfcDTWM/fCaw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 05 Dec 2024 01:05:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-rsg7yeHNAMh1dpp5F6rviiMH9PoEzbTcfcDTWM/fCaw="
+        }
+      ]
+    },
+    {
+      "Route": "img/file0d1aff39-cdbc-4094-8377-6e9e63c96d25.yrkiv0pq5d.jpg",
+      "AssetFile": "C:\\Users\\USER\\Desktop\\cloudia-imp\\Cloudia\\Cloudia.API\\wwwroot\\img\\file0d1aff39-cdbc-4094-8377-6e9e63c96d25.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "309505"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rsg7yeHNAMh1dpp5F6rviiMH9PoEzbTcfcDTWM/fCaw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 05 Dec 2024 01:05:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "yrkiv0pq5d"
+        },
+        {
+          "Name": "label",
+          "Value": "img/file0d1aff39-cdbc-4094-8377-6e9e63c96d25.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-rsg7yeHNAMh1dpp5F6rviiMH9PoEzbTcfcDTWM/fCaw="
+        }
+      ]
+    },
+    {
+      "Route": "img/file1a14d809-c5d9-4941-853c-4eedfc1abc7d.abzxrlevsk.jpg",
+      "AssetFile": "C:\\Users\\USER\\Desktop\\cloudia-imp\\Cloudia\\Cloudia.API\\wwwroot\\img\\file1a14d809-c5d9-4941-853c-4eedfc1abc7d.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1166742"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+r/b7F3OsSPzIJBs1XGd0Vx/WtHmYoi5kPb8KGTR8TA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 04 Dec 2024 23:04:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "abzxrlevsk"
+        },
+        {
+          "Name": "label",
+          "Value": "img/file1a14d809-c5d9-4941-853c-4eedfc1abc7d.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-+r/b7F3OsSPzIJBs1XGd0Vx/WtHmYoi5kPb8KGTR8TA="
+        }
+      ]
+    },
+    {
+      "Route": "img/file1a14d809-c5d9-4941-853c-4eedfc1abc7d.jpg",
+      "AssetFile": "C:\\Users\\USER\\Desktop\\cloudia-imp\\Cloudia\\Cloudia.API\\wwwroot\\img\\file1a14d809-c5d9-4941-853c-4eedfc1abc7d.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1166742"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+r/b7F3OsSPzIJBs1XGd0Vx/WtHmYoi5kPb8KGTR8TA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 04 Dec 2024 23:04:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-+r/b7F3OsSPzIJBs1XGd0Vx/WtHmYoi5kPb8KGTR8TA="
+        }
+      ]
+    },
+    {
+      "Route": "img/file600b02d7-e71c-4727-bf1f-85f1f8a88b3d.jpg",
+      "AssetFile": "C:\\Users\\USER\\Desktop\\cloudia-imp\\Cloudia\\Cloudia.API\\wwwroot\\img\\file600b02d7-e71c-4727-bf1f-85f1f8a88b3d.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "309505"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rsg7yeHNAMh1dpp5F6rviiMH9PoEzbTcfcDTWM/fCaw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 05 Dec 2024 01:05:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-rsg7yeHNAMh1dpp5F6rviiMH9PoEzbTcfcDTWM/fCaw="
+        }
+      ]
+    },
+    {
+      "Route": "img/file600b02d7-e71c-4727-bf1f-85f1f8a88b3d.yrkiv0pq5d.jpg",
+      "AssetFile": "C:\\Users\\USER\\Desktop\\cloudia-imp\\Cloudia\\Cloudia.API\\wwwroot\\img\\file600b02d7-e71c-4727-bf1f-85f1f8a88b3d.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "309505"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rsg7yeHNAMh1dpp5F6rviiMH9PoEzbTcfcDTWM/fCaw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 05 Dec 2024 01:05:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "yrkiv0pq5d"
+        },
+        {
+          "Name": "label",
+          "Value": "img/file600b02d7-e71c-4727-bf1f-85f1f8a88b3d.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-rsg7yeHNAMh1dpp5F6rviiMH9PoEzbTcfcDTWM/fCaw="
+        }
+      ]
+    },
+    {
+      "Route": "img/file896c7bfd-bf07-4e87-9f25-17ff5627c96b.e4hyhtcyvg.jpg",
+      "AssetFile": "C:\\Users\\USER\\Desktop\\cloudia-imp\\Cloudia\\Cloudia.API\\wwwroot\\img\\file896c7bfd-bf07-4e87-9f25-17ff5627c96b.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1848822"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LhA5p9ZqdnQ+IuVr3i4AP59vUTUlpANKNNBOgKq3cE4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 04 Dec 2024 23:04:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "e4hyhtcyvg"
+        },
+        {
+          "Name": "label",
+          "Value": "img/file896c7bfd-bf07-4e87-9f25-17ff5627c96b.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-LhA5p9ZqdnQ+IuVr3i4AP59vUTUlpANKNNBOgKq3cE4="
+        }
+      ]
+    },
+    {
+      "Route": "img/file896c7bfd-bf07-4e87-9f25-17ff5627c96b.jpg",
+      "AssetFile": "C:\\Users\\USER\\Desktop\\cloudia-imp\\Cloudia\\Cloudia.API\\wwwroot\\img\\file896c7bfd-bf07-4e87-9f25-17ff5627c96b.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1848822"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LhA5p9ZqdnQ+IuVr3i4AP59vUTUlpANKNNBOgKq3cE4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 04 Dec 2024 23:04:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-LhA5p9ZqdnQ+IuVr3i4AP59vUTUlpANKNNBOgKq3cE4="
+        }
+      ]
+    }
+  ]
 }

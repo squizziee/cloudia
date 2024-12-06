@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http.Headers;
 using System.Text;
+using Swashbuckle.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +28,10 @@ builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPostAttachmentService, PostAttachmentService>();
+builder.Services.AddScoped<ILikeService, LikeService>();
+builder.Services.AddScoped<ICommentService, CommentService>();
+builder.Services.AddScoped<IReportService, ReportService>();
+builder.Services.AddScoped<IUserProfileService, UserProfileService>();
 
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -149,30 +155,33 @@ app.Map("/auth/register", async (context) =>
 });
 
 // posts CRUD
-app.MapGet("/api/posts", [Authorize(Roles = "1")] async (context) =>
+// <----------------------->
+app.MapGet("/api/posts", [Authorize] async (context) =>
 {
-	using (var scope = app.Services.CreateScope())
-	{
-		var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
-		var result = dbContext.Posts
-			.FromSqlRaw($"SELECT * FROM posts")
-			.ToList();
-		context.Response.StatusCode = 200;
-		await context.Response.WriteAsJsonAsync(result);
-	}
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
+        var result = dbContext.Posts
+            .FromSqlRaw($"SELECT * FROM posts")
+            .ToList();
+        context.Response.StatusCode = 200;
+        await context.Response.WriteAsJsonAsync(result);
+    }
 });
 
 app.MapGet("/api/posts/{id}", async (context) =>
 {
-	using var scope = app.Services.CreateScope();
-	var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
-
     var id = int.Parse(context.Request.RouteValues["id"]!.ToString()!);
-    var result = dbContext.Posts
-		.FromSql($"SELECT * FROM posts WHERE id = {id}")
-		.ToList();
-	context.Response.StatusCode = 200;
-	await context.Response.WriteAsJsonAsync(result);
+
+    using var scope = app.Services.CreateScope();
+    var postService = scope.ServiceProvider.GetRequiredService<IPostService>();
+
+    var result = await postService.GetFullPost(id);
+
+    var srlzd = JsonConvert.SerializeObject(result);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsJsonAsync(srlzd);
 });
 
 app.MapPost("/api/posts", [Authorize] async (context) =>
@@ -200,15 +209,33 @@ app.MapPost("/api/posts", [Authorize] async (context) =>
     await context.Response.WriteAsJsonAsync(newPost);
 });
 
-app.MapGet("/checkuser", [Authorize] async (context) =>
+app.MapPut("/api/posts/{id}", [Authorize] async (context) =>
 {
-    var userId = context.User.FindFirst("_email")?.Value;
+    var id = int.Parse(context.Request.RouteValues["id"]!.ToString()!);
+    var userEmail = context.User.FindFirst("_email")?.Value;
+
+    var text = context.Request.Form["text_content"];
+    var attachments = context.Request.Form.Files;
+
+    using var scope = app.Services.CreateScope();
+    var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+    var postService = scope.ServiceProvider.GetRequiredService<IPostService>();
+
+    var userExists = await userService.UserExists(userEmail!);
+    if (userExists == null)
+    {
+        context.Response.StatusCode = 404;
+        await context.Response.WriteAsync("No such user");
+        return;
+    }
+
+    await postService.UpdatePost(id, text!, attachments);
 
     context.Response.StatusCode = 200;
-    await context.Response.WriteAsJsonAsync(userId);
+    await context.Response.WriteAsync("Post deleted");
 });
 
-app.MapDelete("/api/posts/{id}", async (context) =>
+app.MapDelete("/api/posts/{id}", [Authorize] async (context) =>
 {
     var id = int.Parse(context.Request.RouteValues["id"]!.ToString()!);
 
@@ -219,6 +246,338 @@ app.MapDelete("/api/posts/{id}", async (context) =>
 
     context.Response.StatusCode = 200;
     await context.Response.WriteAsync("Post deleted");
+});
+// <----------------------->
+
+// likes
+// <----------------------->
+
+app.MapPost("/api/likes", [Authorize] async (context) =>
+{
+    var userEmail = context.User.FindFirst("_email")?.Value;
+
+    var postId = int.Parse(context.Request.Form["post_id"]!);
+    var attachments = context.Request.Form.Files;
+
+    using var scope = app.Services.CreateScope();
+    var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+    var postService = scope.ServiceProvider.GetRequiredService<ILikeService>();
+
+    var userExists = await userService.UserExists(userEmail!);
+    if (userExists == null)
+    {
+        context.Response.StatusCode = 404;
+        await context.Response.WriteAsync("No such user");
+        return;
+    }
+
+    var newPost = await postService.AddLike(userExists.id, postId);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsJsonAsync(newPost);
+});
+
+app.MapDelete("/api/likes", [Authorize] async (context) =>
+{
+    var userEmail = context.User.FindFirst("_email")?.Value;
+
+    var postId = int.Parse(context.Request.Form["post_id"]!);
+    var attachments = context.Request.Form.Files;
+
+    using var scope = app.Services.CreateScope();
+    var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+    var postService = scope.ServiceProvider.GetRequiredService<ILikeService>();
+
+    var userExists = await userService.UserExists(userEmail!);
+    if (userExists == null)
+    {
+        context.Response.StatusCode = 404;
+        await context.Response.WriteAsync("No such user");
+        return;
+    }
+
+    var newPost = await postService.RemoveLike(userExists.id, postId);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsJsonAsync(newPost);
+});
+
+// <----------------------->
+
+// comments
+// <----------------------->
+
+app.MapGet("/api/comments/{id}", [Authorize] async (context) =>
+{
+    var id = int.Parse(context.Request.RouteValues["id"]!.ToString()!);
+
+    using var scope = app.Services.CreateScope();
+    var commentService = scope.ServiceProvider.GetRequiredService<ICommentService>();
+
+    var result = await commentService.GetComment(id);
+    if (result == null)
+    {
+        context.Response.StatusCode = 404;
+        await context.Response.WriteAsync("No such comment");
+        return;
+    }
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsJsonAsync(result);
+});
+
+app.MapPost("/api/comments", [Authorize] async (context) =>
+{
+    var userEmail = context.User.FindFirst("_email")?.Value;
+
+    var text = context.Request.Form["text_content"];
+    var postId = int.Parse(context.Request.Form["post_id"]!);
+
+    using var scope = app.Services.CreateScope();
+    var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+    var commentService = scope.ServiceProvider.GetRequiredService<ICommentService>();
+
+    var userExists = await userService.UserExists(userEmail!);
+    if (userExists == null)
+    {
+        context.Response.StatusCode = 404;
+        await context.Response.WriteAsync("No such user");
+        return;
+    }
+
+    var newComment = await commentService.AddComment(userExists.id, postId, text!);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsJsonAsync(newComment);
+});
+
+app.MapPut("/api/comments/{id}", [Authorize] async (context) =>
+{
+    var id = int.Parse(context.Request.RouteValues["id"]!.ToString()!);
+
+    var text = context.Request.Form["text_content"];
+
+    using var scope = app.Services.CreateScope();
+    var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+    var commentService = scope.ServiceProvider.GetRequiredService<ICommentService>();
+
+    var newComment = await commentService.UpdateComment(id, text!);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsJsonAsync(newComment);
+});
+
+app.MapDelete("/api/comments/{id}", [Authorize] async (context) =>
+{
+    var id = int.Parse(context.Request.RouteValues["id"]!.ToString()!);
+
+    using var scope = app.Services.CreateScope();
+    var commentService = scope.ServiceProvider.GetRequiredService<ICommentService>();
+
+    await commentService.DeleteComment(id);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsync("Comment deleted");
+});
+
+// <----------------------->
+
+// reports
+// <----------------------->
+
+app.MapGet("/api/reports/{id}", [Authorize] async (context) =>
+{
+    var id = int.Parse(context.Request.RouteValues["id"]!.ToString()!);
+
+    using var scope = app.Services.CreateScope();
+    var reportService = scope.ServiceProvider.GetRequiredService<IReportService>();
+
+    var result = await reportService.GetReport(id);
+    if (result == null)
+    {
+        context.Response.StatusCode = 404;
+        await context.Response.WriteAsync("No such report");
+        return;
+    }
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsJsonAsync(result);
+});
+
+app.MapPost("/api/reports", [Authorize] async (context) =>
+{
+    var userEmail = context.User.FindFirst("_email")?.Value;
+    var postId = int.Parse(context.Request.Form["post_id"]!);
+    var violationId = int.Parse(context.Request.Form["violation_id"]!);
+
+    using var scope = app.Services.CreateScope();
+    var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+    var reportService = scope.ServiceProvider.GetRequiredService<IReportService>();
+
+    var userExists = await userService.UserExists(userEmail!);
+    if (userExists == null)
+    {
+        context.Response.StatusCode = 404;
+        await context.Response.WriteAsync("No such user");
+        return;
+    }
+
+    var newReport = await reportService.AddReport(userExists.id, postId, violationId);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsJsonAsync(newReport);
+});
+
+// <----------------------->
+
+// profiles
+// <----------------------->
+
+app.MapGet("/api/profiles/subscribers", [Authorize] async (context) =>
+{
+    var userEmail = context.User.FindFirst("_email")?.Value;
+
+    using var scope = app.Services.CreateScope();
+    var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+    var profileService = scope.ServiceProvider.GetRequiredService<IUserProfileService>();
+
+    var userExists = await userService.UserExists(userEmail!);
+    if (userExists == null)
+    {
+        context.Response.StatusCode = 404;
+        await context.Response.WriteAsync("No such user");
+        return;
+    }
+
+    var result = await profileService.GetSubscribers(userExists.id);
+
+    var srlzd = JsonConvert.SerializeObject(result);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsJsonAsync(result);
+});
+
+app.MapGet("/api/profiles/subscriptions", [Authorize] async (context) =>
+{
+    var userEmail = context.User.FindFirst("_email")?.Value;
+
+    using var scope = app.Services.CreateScope();
+    var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+    var profileService = scope.ServiceProvider.GetRequiredService<IUserProfileService>();
+
+    var userExists = await userService.UserExists(userEmail!);
+    if (userExists == null)
+    {
+        context.Response.StatusCode = 404;
+        await context.Response.WriteAsync("No such user");
+        return;
+    }
+
+    var result = await profileService.GetSubscriptions(userExists.id);
+
+    var srlzd = JsonConvert.SerializeObject(result);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsJsonAsync(result);
+});
+
+app.MapGet("/api/profiles/feed", [Authorize] async (context) =>
+{
+    var userEmail = context.User.FindFirst("_email")?.Value;
+
+    using var scope = app.Services.CreateScope();
+    var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+    var profileService = scope.ServiceProvider.GetRequiredService<IUserProfileService>();
+
+    var userExists = await userService.UserExists(userEmail!);
+    if (userExists == null)
+    {
+        context.Response.StatusCode = 404;
+        await context.Response.WriteAsync("No such user");
+        return;
+    }
+
+    var result = await profileService.GetFeed(userExists.id);
+
+    var srlzd = JsonConvert.SerializeObject(result);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsJsonAsync(srlzd);
+});
+
+app.MapPost("/api/profiles/subscribe/{id}", [Authorize] async (context) =>
+{
+    var id = int.Parse(context.Request.RouteValues["id"]!.ToString()!);
+    var userEmail = context.User.FindFirst("_email")?.Value;
+
+    using var scope = app.Services.CreateScope();
+    var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+    var profileService = scope.ServiceProvider.GetRequiredService<IUserProfileService>();
+
+    var userExists = await userService.UserExists(userEmail!);
+    if (userExists == null)
+    {
+        context.Response.StatusCode = 404;
+        await context.Response.WriteAsync("No such user");
+        return;
+    }
+
+    await profileService.SubscribeTo(userExists.id, id);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsync("Subscribed");
+});
+
+app.MapDelete ("/api/profiles/subscribe/{id}", [Authorize] async (context) =>
+{
+    var id = int.Parse(context.Request.RouteValues["id"]!.ToString()!);
+    var userEmail = context.User.FindFirst("_email")?.Value;
+
+    using var scope = app.Services.CreateScope();
+    var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+    var profileService = scope.ServiceProvider.GetRequiredService<IUserProfileService>();
+
+    var userExists = await userService.UserExists(userEmail!);
+    if (userExists == null)
+    {
+        context.Response.StatusCode = 404;
+        await context.Response.WriteAsync("No such user");
+        return;
+    }
+
+    await profileService.UnsubscribeFrom(userExists.id, id);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsync("Unsubscribed");
+});
+
+app.MapPut("/api/profiles", [Authorize] async (context) =>
+{
+    var userEmail = context.User.FindFirst("_email")?.Value;
+
+    var firstName = context.Request.Form["first_name"];
+    var lastName = context.Request.Form["last_name"];
+    var avatarUrl = context.Request.Form["avatar_url"];
+    var location = context.Request.Form["location"];
+    var biography = context.Request.Form["biography"];
+    int? age = (context.Request.Form["age"].IsNullOrEmpty()) ? null : int.Parse(context.Request.Form["age"]!);
+
+    using var scope = app.Services.CreateScope();
+    var userService = scope.ServiceProvider.GetRequiredService<IUserService>();
+    var profileService = scope.ServiceProvider.GetRequiredService<IUserProfileService>();
+
+    var userExists = await userService.UserExists(userEmail!);
+    if (userExists == null)
+    {
+        context.Response.StatusCode = 404;
+        await context.Response.WriteAsync("No such user");
+        return;
+    }
+
+    await profileService.UpdateUserProfile(userExists.id, firstName!, lastName!, avatarUrl, location, biography, age);
+
+    context.Response.StatusCode = 200;
+    await context.Response.WriteAsync("Subscribed");
 });
 
 

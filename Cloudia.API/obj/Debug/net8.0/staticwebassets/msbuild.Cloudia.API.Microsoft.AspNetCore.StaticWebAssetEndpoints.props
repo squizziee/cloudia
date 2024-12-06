@@ -1,0 +1,52 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/Cloudia.API/img/file0d1aff39-cdbc-4094-8377-6e9e63c96d25.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\file0d1aff39-cdbc-4094-8377-6e9e63c96d25.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-rsg7yeHNAMh1dpp5F6rviiMH9PoEzbTcfcDTWM/fCaw="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"309505"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022rsg7yeHNAMh1dpp5F6rviiMH9PoEzbTcfcDTWM/fCaw=\u0022"},{"Name":"Last-Modified","Value":"Thu, 05 Dec 2024 01:05:53 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Cloudia.API/img/file0d1aff39-cdbc-4094-8377-6e9e63c96d25.yrkiv0pq5d.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\file0d1aff39-cdbc-4094-8377-6e9e63c96d25.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"yrkiv0pq5d"},{"Name":"integrity","Value":"sha256-rsg7yeHNAMh1dpp5F6rviiMH9PoEzbTcfcDTWM/fCaw="},{"Name":"label","Value":"_content/Cloudia.API/img/file0d1aff39-cdbc-4094-8377-6e9e63c96d25.jpg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"309505"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022rsg7yeHNAMh1dpp5F6rviiMH9PoEzbTcfcDTWM/fCaw=\u0022"},{"Name":"Last-Modified","Value":"Thu, 05 Dec 2024 01:05:53 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Cloudia.API/img/file1a14d809-c5d9-4941-853c-4eedfc1abc7d.abzxrlevsk.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\file1a14d809-c5d9-4941-853c-4eedfc1abc7d.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"abzxrlevsk"},{"Name":"integrity","Value":"sha256-\u002Br/b7F3OsSPzIJBs1XGd0Vx/WtHmYoi5kPb8KGTR8TA="},{"Name":"label","Value":"_content/Cloudia.API/img/file1a14d809-c5d9-4941-853c-4eedfc1abc7d.jpg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1166742"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022\u002Br/b7F3OsSPzIJBs1XGd0Vx/WtHmYoi5kPb8KGTR8TA=\u0022"},{"Name":"Last-Modified","Value":"Wed, 04 Dec 2024 23:04:52 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Cloudia.API/img/file1a14d809-c5d9-4941-853c-4eedfc1abc7d.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\file1a14d809-c5d9-4941-853c-4eedfc1abc7d.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-\u002Br/b7F3OsSPzIJBs1XGd0Vx/WtHmYoi5kPb8KGTR8TA="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"1166742"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022\u002Br/b7F3OsSPzIJBs1XGd0Vx/WtHmYoi5kPb8KGTR8TA=\u0022"},{"Name":"Last-Modified","Value":"Wed, 04 Dec 2024 23:04:52 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Cloudia.API/img/file600b02d7-e71c-4727-bf1f-85f1f8a88b3d.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\file600b02d7-e71c-4727-bf1f-85f1f8a88b3d.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-rsg7yeHNAMh1dpp5F6rviiMH9PoEzbTcfcDTWM/fCaw="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"309505"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022rsg7yeHNAMh1dpp5F6rviiMH9PoEzbTcfcDTWM/fCaw=\u0022"},{"Name":"Last-Modified","Value":"Thu, 05 Dec 2024 01:05:28 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Cloudia.API/img/file600b02d7-e71c-4727-bf1f-85f1f8a88b3d.yrkiv0pq5d.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\file600b02d7-e71c-4727-bf1f-85f1f8a88b3d.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"yrkiv0pq5d"},{"Name":"integrity","Value":"sha256-rsg7yeHNAMh1dpp5F6rviiMH9PoEzbTcfcDTWM/fCaw="},{"Name":"label","Value":"_content/Cloudia.API/img/file600b02d7-e71c-4727-bf1f-85f1f8a88b3d.jpg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"309505"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022rsg7yeHNAMh1dpp5F6rviiMH9PoEzbTcfcDTWM/fCaw=\u0022"},{"Name":"Last-Modified","Value":"Thu, 05 Dec 2024 01:05:28 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Cloudia.API/img/file896c7bfd-bf07-4e87-9f25-17ff5627c96b.e4hyhtcyvg.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\file896c7bfd-bf07-4e87-9f25-17ff5627c96b.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"e4hyhtcyvg"},{"Name":"integrity","Value":"sha256-LhA5p9ZqdnQ\u002BIuVr3i4AP59vUTUlpANKNNBOgKq3cE4="},{"Name":"label","Value":"_content/Cloudia.API/img/file896c7bfd-bf07-4e87-9f25-17ff5627c96b.jpg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1848822"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022LhA5p9ZqdnQ\u002BIuVr3i4AP59vUTUlpANKNNBOgKq3cE4=\u0022"},{"Name":"Last-Modified","Value":"Wed, 04 Dec 2024 23:04:52 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Cloudia.API/img/file896c7bfd-bf07-4e87-9f25-17ff5627c96b.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\file896c7bfd-bf07-4e87-9f25-17ff5627c96b.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-LhA5p9ZqdnQ\u002BIuVr3i4AP59vUTUlpANKNNBOgKq3cE4="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"1848822"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022LhA5p9ZqdnQ\u002BIuVr3i4AP59vUTUlpANKNNBOgKq3cE4=\u0022"},{"Name":"Last-Modified","Value":"Wed, 04 Dec 2024 23:04:52 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>

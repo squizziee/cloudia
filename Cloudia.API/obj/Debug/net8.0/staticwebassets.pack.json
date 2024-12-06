@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\USER\\Desktop\\cloudia-imp\\Cloudia\\Cloudia.API\\wwwroot\\img\\file0d1aff39-cdbc-4094-8377-6e9e63c96d25.jpg",
+      "PackagePath": "staticwebassets\\img\\file0d1aff39-cdbc-4094-8377-6e9e63c96d25.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\Desktop\\cloudia-imp\\Cloudia\\Cloudia.API\\wwwroot\\img\\file1a14d809-c5d9-4941-853c-4eedfc1abc7d.jpg",
+      "PackagePath": "staticwebassets\\img\\file1a14d809-c5d9-4941-853c-4eedfc1abc7d.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\Desktop\\cloudia-imp\\Cloudia\\Cloudia.API\\wwwroot\\img\\file600b02d7-e71c-4727-bf1f-85f1f8a88b3d.jpg",
+      "PackagePath": "staticwebassets\\img\\file600b02d7-e71c-4727-bf1f-85f1f8a88b3d.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\Desktop\\cloudia-imp\\Cloudia\\Cloudia.API\\wwwroot\\img\\file896c7bfd-bf07-4e87-9f25-17ff5627c96b.jpg",
+      "PackagePath": "staticwebassets\\img\\file896c7bfd-bf07-4e87-9f25-17ff5627c96b.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Cloudia.API.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Cloudia.API.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Cloudia.API.props",
+      "PackagePath": "build\\Cloudia.API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Cloudia.API.props",
+      "PackagePath": "buildMultiTargeting\\Cloudia.API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Cloudia.API.props",
+      "PackagePath": "buildTransitive\\Cloudia.API.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

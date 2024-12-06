@@ -1,0 +1,76 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\file0d1aff39-cdbc-4094-8377-6e9e63c96d25.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Cloudia.API</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Cloudia.API</BasePath>
+      <RelativePath>img/file0d1aff39-cdbc-4094-8377-6e9e63c96d25.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>yrkiv0pq5d</Fingerprint>
+      <Integrity>rsg7yeHNAMh1dpp5F6rviiMH9PoEzbTcfcDTWM/fCaw=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\file0d1aff39-cdbc-4094-8377-6e9e63c96d25.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\file1a14d809-c5d9-4941-853c-4eedfc1abc7d.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Cloudia.API</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Cloudia.API</BasePath>
+      <RelativePath>img/file1a14d809-c5d9-4941-853c-4eedfc1abc7d.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>abzxrlevsk</Fingerprint>
+      <Integrity>+r/b7F3OsSPzIJBs1XGd0Vx/WtHmYoi5kPb8KGTR8TA=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\file1a14d809-c5d9-4941-853c-4eedfc1abc7d.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\file600b02d7-e71c-4727-bf1f-85f1f8a88b3d.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Cloudia.API</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Cloudia.API</BasePath>
+      <RelativePath>img/file600b02d7-e71c-4727-bf1f-85f1f8a88b3d.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>yrkiv0pq5d</Fingerprint>
+      <Integrity>rsg7yeHNAMh1dpp5F6rviiMH9PoEzbTcfcDTWM/fCaw=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\file600b02d7-e71c-4727-bf1f-85f1f8a88b3d.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\file896c7bfd-bf07-4e87-9f25-17ff5627c96b.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Cloudia.API</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Cloudia.API</BasePath>
+      <RelativePath>img/file896c7bfd-bf07-4e87-9f25-17ff5627c96b.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>e4hyhtcyvg</Fingerprint>
+      <Integrity>LhA5p9ZqdnQ+IuVr3i4AP59vUTUlpANKNNBOgKq3cE4=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\file896c7bfd-bf07-4e87-9f25-17ff5627c96b.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+  </ItemGroup>
+</Project>

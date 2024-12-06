@@ -4,6 +4,6 @@
     {
         public int id { get; set; }
         public int post_id { get; set; }
-        public int source_url { get; set; }
+        public string? source_url { get; set; }
     }
 }

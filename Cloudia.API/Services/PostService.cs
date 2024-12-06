@@ -3,6 +3,7 @@ using Cloudia.API.Entities;
 using Cloudia.API.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
+using System;
 
 namespace Cloudia.API.Services
 {
@@ -10,12 +11,21 @@ namespace Cloudia.API.Services
     {
         private readonly IApplicationContext _context;
         private readonly ILogger<PostService> _logger;
-        IPostAttachmentService _postAttachmentService;
+        private readonly IPostAttachmentService _postAttachmentService;
+        private readonly ILikeService _likeService;
+        private readonly ICommentService _commentService;
 
-        public PostService(IApplicationContext context, ILogger<PostService> logger, IPostAttachmentService postAttachmentService) { 
+        public PostService(
+                IApplicationContext context, 
+                ILogger<PostService> logger, 
+                IPostAttachmentService postAttachmentService,
+                ILikeService likeService,
+                ICommentService commentService) { 
             this._context = context;
             this._logger = logger; 
             this._postAttachmentService = postAttachmentService;
+            this._likeService = likeService;
+            this._commentService = commentService;
         }
 
 
@@ -71,14 +81,37 @@ namespace Cloudia.API.Services
             return await _context.Posts.FromSql($"SELECT * FROM posts WHERE id = {id}").FirstOrDefaultAsync();
         }
 
-        public List<Post> GetPosts(string filter)
+        public async Task<List<Post>> GetPosts(string filter)
         {
-            throw new NotImplementedException();
+            return await _context.Posts.FromSqlRaw($"SELECT * FROM posts WHERE text_content LIKE '%{filter}%'").ToListAsync();
         }
 
-        public void UpdatePost(int id)
+        public async Task<Post> UpdatePost(int postId, string textContent, IFormFileCollection newAttachments)
         {
-            throw new NotImplementedException();
+            using var connection = new NpgsqlConnection(_context.GetConnectionString());
+            await connection.OpenAsync();
+
+            var command = new NpgsqlCommand("CALL update_post(@post_id, @text_content_new)", connection);
+            command.Parameters.AddWithValue("@post_id", postId);
+            command.Parameters.AddWithValue("@text_content_new", textContent);
+            
+            await command.ExecuteNonQueryAsync();
+
+            await connection.CloseAsync();
+
+            _postAttachmentService.UpdatePostAttachments(postId, newAttachments);
+
+            return (await GetPost(postId))!;
+        }
+
+        public async Task<(Post? post, List<PostAttachment>? attachments, List<Comment>? comments, List<Like>? likes)> GetFullPost(int id)
+        {
+            var _likes = await _context.Likes.FromSql($"SELECT * FROM likes WHERE post_id = {id}").ToListAsync();
+            var _comments = await _context.Comments.FromSql($"SELECT * FROM comments WHERE post_id = {id}").ToListAsync();
+            var _attachments = await _context.PostAttachments.FromSql($"SELECT * FROM post_attachments WHERE post_id = {id}").ToListAsync();
+            var _post = await GetPost(id);
+
+            return (post: _post, attachments: _attachments, comments: _comments, likes: _likes);
         }
     }
 }
